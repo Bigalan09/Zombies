@@ -8,17 +8,21 @@ using Zombies.states;
 
 namespace Zombies.entities
 {
-    class Background : GraphicalEntity
+    class Background : Entity
     {
         public Background()
         {
-            int rows = 10;
-            int cols = 10;
-            this.DrawLayer = 900;
             this.ActiveThinkDelay = 100;
             this.InActiveThinkDelay = 100;
             this.CurrentState = new StaticEntityState();
+        }
 
+        public override void Initialize()
+        {
+            base.Initialize();
+            int rows = 6;
+            int cols = 11;
+            
             BackgroundTile tile;
 
             for (int x = 0; x < cols; x++)
@@ -26,8 +30,7 @@ namespace Zombies.entities
                 for (int y = 0; y < rows; y++)
                 {
                     tile = new BackgroundTile(x, y);
-                    tile.Alive = true;
-                    CreateEntity(tile);
+                    Game1.Instance.GameWorld.EntityManager.AddEntity(tile);
                 }
             }
         }

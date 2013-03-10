@@ -93,7 +93,6 @@ namespace Zombies.gamestates
             this.EntityManager.AddEntity(b);
             this.EntityManager.AddEntity(player);
 
-            cameraEntities.Add(b);
             cameraEntities.Add(player);
             cameraEntities.Add(player.Aim);
         }

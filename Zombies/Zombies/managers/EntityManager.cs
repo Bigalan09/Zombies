@@ -71,7 +71,8 @@ namespace Zombies.managers
             entity.fetchAll += new Entity.onFetchAll(FetchAll);
             entity.createEntity += new Entity.onCreate(AddEntity);
 
-            newEntities.Add(entity.Id, entity);
+            if (!newEntities.ContainsKey(entity.Id))
+                newEntities.Add(entity.Id, entity);
 
             if (entity is GraphicalEntity)
                 quadTree.Insert((GraphicalEntity)entity);

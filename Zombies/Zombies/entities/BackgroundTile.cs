@@ -14,17 +14,15 @@ namespace Zombies.entities
         {
             TexturePath = ("background");
             Position = new Vector2(Texture.Width * x, Texture.Height * y);
-            this.DrawLayer = 900;
+            this.DrawLayer = Game1.Instance.Random.Next(500, 600);
             this.ActiveThinkDelay = 100;
             this.InActiveThinkDelay = 100;
             this.CurrentState = new StaticEntityState();
-            CreateEntity(this);
         }
 
         public override void Draw(SpriteBatch spriteBatch, Camera camera)
         {
             base.Draw(spriteBatch, camera);
-            Console.WriteLine("Drawing tile");
         }
 
     }
