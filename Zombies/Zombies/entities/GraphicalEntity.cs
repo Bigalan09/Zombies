@@ -178,7 +178,7 @@ namespace Zombies.entities
                 if (value != null)
                 {
                     bounds.X = this.texture.Width;
-                    bounds.Y = this.texture.Height;
+                    bounds.Y = this.texture.Height - 25;
                     bounds = bounds * scale;
                 }
                 else

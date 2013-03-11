@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using Zombies.states;
 
 namespace Zombies.entities
 {
@@ -20,19 +21,21 @@ namespace Zombies.entities
             this.InActiveThinkDelay = 10;
             this.DrawLayer = 1200;
             Friction = 0.03f;
+            this.CurrentState = new BeingState();
         }
 
         public Zombie()
             : base()
         {
-            Health = 10.0f;
+            Health = 100.0f;
             TexturePath = ("player");
             Speed = 5.0f;
             Mass = 2.0f;
             this.ActiveThinkDelay = 10;
             this.InActiveThinkDelay = 10;
             this.DrawLayer = 1200;
-            Friction = 0.03f;
+            Friction = 0.3f;
+            this.CurrentState = new BeingState();
         }
 
     }

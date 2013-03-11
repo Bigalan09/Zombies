@@ -17,8 +17,8 @@ namespace Zombies.entities.weapons
         {
             Owner = owner;
             Cooldown = 20;
-            Damage = 4;
-            knockEffect = 100;
+            Damage = 1;
+            knockEffect = 1;
             ReloadTime = 5;
             ClipSize = 5;
             numberOfBullets = 1;
@@ -55,17 +55,20 @@ namespace Zombies.entities.weapons
                         if (targetList[i] is PhysicalEntity)
                         {
                             if (targetList[i] is Being)
+                            {
                                 ((BeingState)((Being)targetList[i]).CurrentState).GetHit(direction, this);
+                                ((Being)targetList[i]).Health -= Damage;
+                                if (((Being)targetList[i]).Health <= 0)
+                                {
+                                    ((Being)targetList[i]).Alive = false;
+                                }
+                            }
 
                             ((PhysicalEntityState)((PhysicalEntity)targetList[i]).CurrentState).GetPushed(Vector2.Normalize(direction) * knockEffect);
                         }
                     }
                 }
-                Vector2 pos = (Owner.Position + (Owner.Bounds / 2));
-                float x = (float)(pos.X + 5 * Math.Cos(Owner.Rotation));
-                float y = (float)(pos.Y + 5 * Math.Sin(Owner.Rotation));
-                pos = new Vector2(x, y);
-                CreateEntity(new GraphicsLine(pos, temp));
+                CreateEntity(new GraphicsLine(Owner.Position + Owner.Bounds / 2, temp));
 
             }
         }

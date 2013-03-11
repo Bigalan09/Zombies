@@ -58,7 +58,7 @@ namespace Zombies.entities.weapons
             if (Alive)
             {
                 this.Alive = false;
-                Explosion explosion = new Explosion(300.0f, 10, 1.3f, CenterPosition);
+                Explosion explosion = new Explosion(150.0f, 10, 1.3f, CenterPosition);
                 CreateEntity(explosion);
                 explosion.Explode();
                 //Game1.Instance.SoundManager.PlayEffect("grenade_sound", Position, this.GetTime());

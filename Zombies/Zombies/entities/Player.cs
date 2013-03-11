@@ -31,6 +31,7 @@ namespace Zombies.entities
             {
                 secondaryWeapon = value;
                 secondaryWeapon.Owner = this;
+                //CreateEntity(SecondaryWeapon);
             }
         }
 
@@ -56,6 +57,7 @@ namespace Zombies.entities
             base.Initialize();
             CreateEntity(aim);
             CreateEntity(primaryWeapon);
+            CreateEntity(secondaryWeapon);
         }
 
         public Player()
@@ -65,6 +67,7 @@ namespace Zombies.entities
             TexturePath = ("player");
             aim = new Cursor(this);
             aim.Owner = this;
+            DrawLayer = 1000;
             CreateEntity(aim);
         }
 

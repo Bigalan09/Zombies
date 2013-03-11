@@ -25,11 +25,12 @@ namespace Zombies.particleEffects
             foreach (Particle p in Particles)
             {
                 p.Alive = true;
-                p.MovementVector = rand.Next(40, 60) * (new Vector2(0.5f - (float)rand.NextDouble(), 0.5f - (float)rand.NextDouble()));
+                p.MovementVector = rand.Next(10, 20) * (new Vector2(0.5f - (float)rand.NextDouble(), 0.5f - (float)rand.NextDouble()));
                 p.Position = this.Position;
                 p.Rotation = (float)rand.NextDouble();
                 p.Scale = (16.5f - (float)rand.Next(4)) / 10;
                 p.TexturePath = ("explosion");
+                p.DrawLayer = rand.Next(200, 300);
             }
         }
 

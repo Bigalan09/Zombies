@@ -14,7 +14,7 @@ namespace Zombies.entities
         {
             TexturePath = ("background");
             Position = new Vector2(Texture.Width * x, Texture.Height * y);
-            this.DrawLayer = Game1.Instance.Random.Next(500, 600);
+            this.DrawLayer = Game1.Instance.Random.Next(40, 60);
             this.ActiveThinkDelay = 100;
             this.InActiveThinkDelay = 100;
             this.CurrentState = new StaticEntityState();

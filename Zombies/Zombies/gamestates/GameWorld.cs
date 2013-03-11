@@ -90,6 +90,13 @@ namespace Zombies.gamestates
             player.PlayerIndex = PlayerIndex.Two;
             player.SecondaryWeapon = new GrenadeThrower();
 
+            for (int i = 0; i < 50; i++)
+            {
+                Zombie zombie = new Zombie(new Vector2(Game1.Instance.Random.Next(50, 1000), Game1.Instance.Random.Next(50, 1000)));
+                zombie.Move();
+                this.EntityManager.AddEntity(zombie);
+            }
+
             this.EntityManager.AddEntity(b);
             this.EntityManager.AddEntity(player);
 

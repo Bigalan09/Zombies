@@ -88,6 +88,7 @@
     <Compile Include="entities\weapons\GrenadeThrower.cs" />
     <Compile Include="entities\weapons\Pistol.cs" />
     <Compile Include="entities\weapons\Weapon.cs" />
+    <Compile Include="entities\Zombie.cs" />
     <Compile Include="gamestates\GameState.cs" />
     <Compile Include="Line.cs" />
     <Compile Include="managers\EntityManager.cs" />

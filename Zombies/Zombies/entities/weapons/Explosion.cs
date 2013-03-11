@@ -47,7 +47,7 @@ namespace Zombies.entities.weapons
                     if (hits[i] == this)
                         continue;
                     Vector2 tmp = (((PhysicalEntity)hits[i]).Position - position);
-                    distToTarget = explosionRadius + 50 - tmp.Length();
+                    distToTarget = explosionRadius + 25 - tmp.Length();
                     tmp.Normalize();
 
                     if (hits[i] is Explosive)
