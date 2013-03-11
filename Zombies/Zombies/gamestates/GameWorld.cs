@@ -90,15 +90,6 @@ namespace Zombies.gamestates
             player.PlayerIndex = PlayerIndex.Two;
             player.SecondaryWeapon = new GrenadeThrower();
 
-            Zombie z;
-            Vector2 pos;
-            for (int i = 0; i < 10; i++)
-            {
-                pos = new Vector2(10, 10);
-                z = new Zombie();
-                this.EntityManager.AddEntity(z);
-            }
-
             this.EntityManager.AddEntity(b);
             this.EntityManager.AddEntity(player);
 
