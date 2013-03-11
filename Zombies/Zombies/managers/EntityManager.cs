@@ -97,7 +97,7 @@ namespace Zombies.managers
 
             foreach (GraphicalEntity g in results)
             {
-                if (g is PhysicalEntity)
+                if (g is PhysicalEntity && !(g is Usable))
                     temp.Add((PhysicalEntity)g);
             }
 

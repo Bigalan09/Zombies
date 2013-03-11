@@ -18,7 +18,7 @@ namespace Zombies.strategy
 
         public ZombieStrategy()
         {
-            offset = (0.5f - (float)random.NextDouble()) * 500;
+            offset = (0.5f - (float)random.NextDouble()) * 100;
         }
 
 
@@ -27,9 +27,8 @@ namespace Zombies.strategy
             Vector2 temp = new Vector2();
             if (players == null || players.Count == 0)
                 Owner.FetchAll(typeof(Player), players);
-            //  temp.Normalize();
 
-            float minDistance = 1000.0f;
+            float minDistance = 3000.0f;
 
             target = Vector2.Zero;
             foreach (Player p in players)
@@ -43,10 +42,10 @@ namespace Zombies.strategy
                     temp.Normalize();
                     temp = Vector2.Multiply(temp, offset);
                     minDistance = vector.Length();
-                    if (vector.Length() < 100)
-                        target = p.Position - ((Zombie)Owner).Position;
+                    if (vector.Length() < 35)
+                        target = p.CenterPosition - ((Zombie)Owner).CenterPosition;
                     else
-                        target = p.Position - ((Zombie)Owner).Position + temp + p.MovementVector * 50;
+                        target = p.CenterPosition - ((Zombie)Owner).CenterPosition + temp + p.MovementVector * 5;
                 }
             }
 
@@ -58,7 +57,7 @@ namespace Zombies.strategy
 
             // Vector2 t = ((Zombie)Owner).Target.Position + ((Zombie)Owner).Target.Bounds/2 - (((Zombie)Owner).Position + ((Zombie)Owner).Bounds/2);
 
-            if (target.Length() <= 90.0f)
+            if (target.Length() <= 45.0f)
                 ((ZombieState)Owner.CurrentState).Attack();
             else
             {

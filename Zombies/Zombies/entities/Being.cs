@@ -38,7 +38,7 @@ namespace Zombies.entities
         public float Health
         {
             get { return health; }
-            set { health = value; }
+            set { health = (value > 100) ? 100 : value; }
         }
 
         public void GetHit(Weapon weapon)

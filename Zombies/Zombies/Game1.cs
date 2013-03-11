@@ -17,15 +17,28 @@ namespace Zombies
     {
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
-
+        private SpriteFont font;
+        private SpriteFont font1;
         public static Game1 Instance = null;
         
         private ResourceManager resourceManager = null;
         private GameStateManager gameStateManager = null;
+
+        internal GameStateManager GameStateManager
+        {
+            get { return gameStateManager; }
+        }
         private InputManager inputManager = null;
 
         private Random random = new Random();
         private GameState gameState;
+        private GameWorld gameWorld;
+
+        internal GameWorld GameWorld
+        {
+            get { return gameWorld; }
+            set { gameWorld = value; }
+        }
 
         internal ResourceManager ResourceManager
         {
@@ -41,12 +54,6 @@ namespace Zombies
         {
             get { return random; }
             set { random = value; }
-        }
-
-        internal GameWorld GameWorld
-        {
-            get { return (GameWorld)gameState; }
-            set { gameState = value; }
         }
 
         internal GameState GameState
@@ -90,6 +97,8 @@ namespace Zombies
         protected override void LoadContent()
         {
             spriteBatch = new SpriteBatch(GraphicsDevice);
+            font = Content.Load<SpriteFont>("arial");
+            font1 = Content.Load<SpriteFont>("arial1");
             GameWorld = new GameWorld();
             gameStateManager.Push(GameWorld);
         }
@@ -112,8 +121,22 @@ namespace Zombies
         protected override void Draw(GameTime gameTime)
         {
             base.Draw(gameTime);
-
             gameStateManager.Draw();
+
+            if (GameState is GameWorld)
+            {
+                spriteBatch.Begin();
+                spriteBatch.DrawString(font, "Health: " + GameWorld.Player.Health, new Vector2(25, 25), Color.White);
+                spriteBatch.DrawString(font, "Score: " + GameWorld.Score, new Vector2(25, 50), Color.White);
+                spriteBatch.End();
+            }
+            else
+            {
+                spriteBatch.Begin();
+                spriteBatch.DrawString(font1, "GAME OVER!", new Vector2((graphics.PreferredBackBufferWidth / 2) - 150, (graphics.PreferredBackBufferHeight / 2) - 50), Color.White);
+                spriteBatch.DrawString(font, "Score: " + GameWorld.Score, new Vector2((graphics.PreferredBackBufferWidth / 2) - 50, (graphics.PreferredBackBufferHeight / 2) + 50), Color.White);
+                spriteBatch.End();
+            }
         }
     }
 }

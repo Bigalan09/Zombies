@@ -9,39 +9,51 @@ namespace Zombies.entities
 {
     class ZombieSpawner : Entity
     {
-        private int quantity;
-
+        private static int quantity;
+        private static int countSpawn = 1;
         public ZombieSpawner()
         {
-            ActiveThinkDelay = 200;
-            quantity = 10;
+            ActiveThinkDelay = Game1.Instance.Random.Next(500, 2000);
+            InActiveThinkDelay = Game1.Instance.Random.Next(500, 2000);
+            quantity = 5;
         }
 
         public override void Initialize()
         {
             base.Initialize();
-            for (int i = 0; i < quantity; i++)
-            {
-                Zombie zombie = new Zombie(new Vector2(Game1.Instance.Random.Next(50, 1000), Game1.Instance.Random.Next(50, 1000)));
-                CreateEntity(zombie);
-            }
+            Spawn();
         }
 
         protected override void Act(GameTime gameTime)
         {
             base.Act(gameTime);
+            ActiveThinkDelay = Game1.Instance.Random.Next(500, 2000);
+            InActiveThinkDelay = Game1.Instance.Random.Next(500, 2000);
 
             ArrayList count = new ArrayList();
             Game1.Instance.GameWorld.EntityManager.FetchAll(typeof(Zombie), count);
             int currentCount = count.Count;
             if (currentCount > 5)
-                return;
-
-            for (int i = 0; i < quantity; i++)
             {
-                Zombie zombie = new Zombie(new Vector2(Game1.Instance.Random.Next(50, 1000), Game1.Instance.Random.Next(50, 1000)));
+                countSpawn += 1;
+                return;
+            }
+
+            Spawn();
+            quantity += 1;
+            Zombie.speed += 0.01f;
+        }
+
+        private void Spawn()
+        {
+            for (int i = 0; i < countSpawn; i++)
+            {
+                double angle = Game1.Instance.Random.NextDouble() * Math.PI * 2;
+                double radius = Math.Sqrt(Game1.Instance.Random.NextDouble() + 0.3) * 600;
+                float x = (float)(Game1.Instance.GameWorld.Player.Position.X - (radius * Math.Cos(angle)));
+                float y = (float)(Game1.Instance.GameWorld.Player.Position.Y - (radius * Math.Sin(angle)));
+                Zombie zombie = new Zombie(new Vector2(x, y));
                 CreateEntity(zombie);
-                Game1.Instance.GameWorld.EntityManager.AddEntity(zombie);
             }
         }
 
@@ -52,7 +64,7 @@ namespace Zombies.entities
 
         public override bool isInActiveThink()
         {
-            return false;
+            return true;
         }
     }
 }

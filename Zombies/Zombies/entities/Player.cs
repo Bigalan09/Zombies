@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using Zombies.entities.weapons;
+using Zombies.gamestates;
 
 namespace Zombies.entities
 {
@@ -31,7 +32,6 @@ namespace Zombies.entities
             {
                 secondaryWeapon = value;
                 secondaryWeapon.Owner = this;
-                //CreateEntity(SecondaryWeapon);
             }
         }
 
@@ -40,7 +40,7 @@ namespace Zombies.entities
         public Player(Vector2 position)
             : base(position)
         {
-            Health = 50.0f;
+            Health = 100.0f;
             TexturePath = ("player");
             Speed = 8.0f;
             Mass = 2.0f;
@@ -98,6 +98,7 @@ namespace Zombies.entities
         {
             base.OnDeath();
             aim.Alive = false;
+            Game1.Instance.GameStateManager.Push(new GameOverState());
         }
 
         public override bool isActiveThink()

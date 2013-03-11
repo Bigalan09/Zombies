@@ -16,11 +16,11 @@ namespace Zombies.entities.weapons
         public Pistol(PhysicalEntity owner)
         {
             Owner = owner;
-            Cooldown = 10;
-            Damage = 5;
-            knockEffect = 10;
-            ReloadTime = 3;
-            ClipSize = 5;
+            Cooldown = 18;
+            Damage = 50;
+            knockEffect = 15;
+            ReloadTime = 10;
+            ClipSize = 10;
             numberOfBullets = 1;
             AllowFire = true;
         }
@@ -34,12 +34,7 @@ namespace Zombies.entities.weapons
 
             AllowFire = false;
 
-            //LightFlash f = new LightFlash(Owner.Position); //, new Color(168, 140, 135, 224), 100
-            //CreateEntity(f);
-
             Vector2 temp;
-
-            //Game1.Instance.SoundManager.PlayEffect("silencer" + Game1.Instance.Random.Next(1, 3).ToString(), Owner.Position, GetTime());
             for (int k = -numberOfBullets / 2; k <= numberOfBullets / 2; k++)
             {
                 temp = Vector2.Multiply(Vector2.Normalize(direction + k * new Vector2(direction.Y, -direction.X)), direction.Length()) + Owner.Position + Owner.Bounds / 2;
@@ -57,7 +52,6 @@ namespace Zombies.entities.weapons
                             if (targetList[i] is Being)
                             {
                                 ((BeingState)((Being)targetList[i]).CurrentState).GetHit(direction, this);
-                                //((Being)targetList[i]).Health -= Damage;
                             }
 
                             ((PhysicalEntityState)((PhysicalEntity)targetList[i]).CurrentState).GetPushed(Vector2.Normalize(direction) * knockEffect);

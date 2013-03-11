@@ -8,24 +8,48 @@ namespace Zombies.entities.items
 {
     class HealthPack : StaticEntity, Usable
     {
+        private int delay = 200;
+        private int count = 1;
 
         public HealthPack(Vector2 pos)
         {
             Position = pos;
-            ActiveThinkDelay = 1000;
+            delay = Game1.Instance.Random.Next(100, 500);
+            this.ActiveThinkDelay = 10;
+            this.InActiveThinkDelay = 10;
             TexturePath = ("health");
         }
 
         protected override void Act(GameTime gameTime)
         {
             base.Act(gameTime);
-            Alive = false;
+            if (count >= delay)
+                remove();
+            count++;
+        }
+
+        private void remove()
+        {
+            if (Alive)
+            {
+                this.Alive = false;
+            }
         }
 
         public void Use(Player player)
         {
             player.Health += 10;
-            Alive = false;
+            remove();
+        }
+
+        public override bool isActiveThink()
+        {
+            return true;
+        }
+
+        public override bool isInActiveThink()
+        {
+            return true;
         }
     }
 }

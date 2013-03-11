@@ -14,6 +14,7 @@ namespace Zombies.entities
     class Zombie : Being
     {
         private PhysicalEntity target;
+        public static float speed = 0.8f;
 
         public PhysicalEntity Target
         {
@@ -24,37 +25,41 @@ namespace Zombies.entities
         public Zombie(Vector2 position)
             : base(position)
         {
-            Health = 20.0f;
+            Health = 50.0f;
             TexturePath = ("zombie");
-            Speed = 1.0f;
+            if (speed >= 4f) speed = 4f;
+            Speed = speed;
             Mass = 8.0f;
             ActiveThinkDelay = 20;
             InActiveThinkDelay = 200;
             DrawLayer = Game1.Instance.Random.Next(1000, 1200);
             Friction = 0.3f;
             this.CurrentState = new ZombieIdleState();
-            this.CurrentStrategy = new ZombieIdleStrategy();
+            this.CurrentStrategy = new ZombieStrategy();
         }
 
         public Zombie()
             : base()
         {
-            Health = 10.0f;
+            Health = 50.0f;
             TexturePath = ("zombie");
-            Speed = 1.0f;
+            if (speed >= 4f) speed = 4f;
+            Speed = speed;
             Mass = 8.0f;
             ActiveThinkDelay = 20;
             InActiveThinkDelay = 200;
             DrawLayer = Game1.Instance.Random.Next(1000, 1200);
             Friction = 0.3f;
             this.CurrentState = new ZombieIdleState();
-            this.CurrentStrategy = new ZombieIdleStrategy();
+            this.CurrentStrategy = new ZombieStrategy();
         }
 
         public override GraphicalEntity New()
         {
             Zombie z = new Zombie();
-            z.CurrentStrategy = new ZombieIdleStrategy();
+            if (speed >= 4f) speed = 4f;
+            z.Speed = speed;
+            z.CurrentStrategy = new ZombieStrategy();
             z.CurrentState = new ZombieWalkState();
             return z;
         }
@@ -93,13 +98,15 @@ namespace Zombies.entities
 
         public override void OnDeath()
         {
-            if (Game1.Instance.Random.NextDouble() < 0.5)
+            base.OnDeath();
+            if (Game1.Instance.Random.NextDouble() < 0.2)
             {
                 HealthPack hp = new HealthPack(Position);
                 CreateEntity(hp);
             }
-            //Alive = false;
-            base.OnDeath();
+            int score = (int)((speed * 100) + (-Health * 10));
+            score = (score + 50) / 100 * 100;
+            Game1.Instance.GameWorld.Score += score;
         }
     }
 }

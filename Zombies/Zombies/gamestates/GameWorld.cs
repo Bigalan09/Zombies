@@ -22,9 +22,21 @@ namespace Zombies.gamestates
         private EntityManager entityManager = new EntityManager();
 
         private SimpleRenderer hudRenderer = new SimpleRenderer();
+        private int score = 0;
 
         private Camera hudCamera = new Camera();
         private Player player = null;
+
+        internal Player Player
+        {
+            get { return player; }
+        }
+
+        internal int Score
+        {
+            set { score = value; }
+            get { return score; }
+        }
         private ZombieSpawner spawner;
 
         internal EntityManager EntityManager

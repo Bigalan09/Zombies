@@ -48,13 +48,13 @@ namespace Zombies.strategy
         public void callFriends()
         {
             ArrayList l = new ArrayList();
-            Owner.EntitiesInRadius(300.0f, ((Being)Owner).Position, l);
+            Owner.EntitiesInRadius(100.0f, ((Being)Owner).Position, l);
 
             foreach (Entity e in l)
             {
                 if (e is Zombie)
                 {
-                    ((Zombie)e).Speed = 2.0f;
+                    //((Zombie)e).Speed = speed;
                     ((Zombie)e).CurrentStrategy = new ZombieStrategy();
                 }
             }

@@ -42,7 +42,7 @@ namespace Zombies.states.player
             base.Use();
 
             ArrayList list = new ArrayList();
-            Owner.EntitiesInRadius(25, Player.Position, list);
+            Owner.EntitiesInRadius(30, Player.CenterPosition, list);
 
             for (int i = 0; i < list.Count; i++)
             {

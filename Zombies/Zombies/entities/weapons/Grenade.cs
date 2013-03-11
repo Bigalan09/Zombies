@@ -13,6 +13,8 @@ namespace Zombies.entities.weapons
 
         private float counter;
         private float rotationSpeed;
+        private float damage = 10;
+
         public Grenade()
         {
             TexturePath = ("grenade");
@@ -21,10 +23,10 @@ namespace Zombies.entities.weapons
             FaceVector = new Vector2(1, 0);
         }
 
-        public Grenade(Vector2 position, Vector2 direction, float force)
+        public Grenade(Vector2 position, Vector2 direction, float force, float damage)
             : base(position)
         {
-
+            this.damage = damage;
             FaceVector = new Vector2(1, 0);
             TexturePath = ("grenade");
             counter = 0;
@@ -58,10 +60,9 @@ namespace Zombies.entities.weapons
             if (Alive)
             {
                 this.Alive = false;
-                Explosion explosion = new Explosion(150.0f, 10, 1.3f, CenterPosition);
+                Explosion explosion = new Explosion(150.0f, damage, 1.3f, CenterPosition);
                 CreateEntity(explosion);
                 explosion.Explode();
-                //Game1.Instance.SoundManager.PlayEffect("grenade_sound", Position, this.GetTime());
             }
         }
 

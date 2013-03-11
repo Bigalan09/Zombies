@@ -16,7 +16,7 @@ namespace Zombies.entities.weapons
         public GraphicsLine(Vector2 start, Vector2 stop)
         {
             this.Position = start;
-            lifeTime = 5;
+            lifeTime = 10;
             permanent = false;
             this.ActiveThinkDelay = 10;
             this.InActiveThinkDelay = 10;

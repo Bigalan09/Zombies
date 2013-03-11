@@ -27,6 +27,7 @@ namespace Zombies.managers
             gameState.Initilize();
             gameState.Owner = this;
             stateStack.Push(gameState);
+            Game1.Instance.GameState = gameState;
         }
 
         public GameState Pop()
