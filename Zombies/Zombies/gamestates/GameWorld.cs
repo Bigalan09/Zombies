@@ -25,6 +25,7 @@ namespace Zombies.gamestates
 
         private Camera hudCamera = new Camera();
         private Player player = null;
+        private ZombieSpawner spawner;
 
         internal EntityManager EntityManager
         {
@@ -40,6 +41,7 @@ namespace Zombies.gamestates
 
         public GameWorld()
         {
+            spawner = new ZombieSpawner();
         }
 
         public override void Think(GameTime gameTime)
@@ -73,6 +75,7 @@ namespace Zombies.gamestates
                     }
                 }
             }
+            spawner.Think(gameTime);
 
             Camera.Position /= count;
         }
@@ -90,11 +93,10 @@ namespace Zombies.gamestates
             player.PlayerIndex = PlayerIndex.Two;
             player.SecondaryWeapon = new GrenadeThrower();
 
-            ZombieSpawner spawner = new ZombieSpawner();
 
             this.EntityManager.AddEntity(b);
-            this.EntityManager.AddEntity(spawner);
             this.EntityManager.AddEntity(player);
+            this.EntityManager.AddEntity(spawner);
 
             cameraEntities.Add(player);
             cameraEntities.Add(player.Aim);

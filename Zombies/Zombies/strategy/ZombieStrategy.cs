@@ -29,7 +29,7 @@ namespace Zombies.strategy
                 Owner.FetchAll(typeof(Player), players);
             //  temp.Normalize();
 
-            float minDistance = 4000.0f;
+            float minDistance = 1000.0f;
 
             target = Vector2.Zero;
             foreach (Player p in players)

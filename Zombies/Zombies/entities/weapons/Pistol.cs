@@ -16,10 +16,10 @@ namespace Zombies.entities.weapons
         public Pistol(PhysicalEntity owner)
         {
             Owner = owner;
-            Cooldown = 20;
-            Damage = 1;
-            knockEffect = 1;
-            ReloadTime = 5;
+            Cooldown = 10;
+            Damage = 5;
+            knockEffect = 10;
+            ReloadTime = 3;
             ClipSize = 5;
             numberOfBullets = 1;
             AllowFire = true;

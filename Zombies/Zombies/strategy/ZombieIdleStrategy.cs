@@ -54,7 +54,7 @@ namespace Zombies.strategy
             {
                 if (e is Zombie)
                 {
-                    ((Zombie)e).Speed = 6.0f;
+                    ((Zombie)e).Speed = 3.0f;
                     ((Zombie)e).CurrentStrategy = new ZombieStrategy();
                 }
             }

@@ -13,9 +13,8 @@ namespace Zombies.entities
 
         public ZombieSpawner()
         {
-            ActiveThinkDelay = 500;
+            ActiveThinkDelay = 200;
             quantity = 10;
-
         }
 
         public override void Initialize()
@@ -24,26 +23,26 @@ namespace Zombies.entities
             for (int i = 0; i < quantity; i++)
             {
                 Zombie zombie = new Zombie(new Vector2(Game1.Instance.Random.Next(50, 1000), Game1.Instance.Random.Next(50, 1000)));
-                zombie.Move();
                 CreateEntity(zombie);
             }
         }
 
         protected override void Act(GameTime gameTime)
         {
+            base.Act(gameTime);
+
             ArrayList count = new ArrayList();
             Game1.Instance.GameWorld.EntityManager.FetchAll(typeof(Zombie), count);
             int currentCount = count.Count;
-            if (currentCount > 15)
+            if (currentCount > 5)
                 return;
 
             for (int i = 0; i < quantity; i++)
             {
                 Zombie zombie = new Zombie(new Vector2(Game1.Instance.Random.Next(50, 1000), Game1.Instance.Random.Next(50, 1000)));
-                zombie.Move();
                 CreateEntity(zombie);
+                Game1.Instance.GameWorld.EntityManager.AddEntity(zombie);
             }
-
         }
 
         public override bool isActiveThink()

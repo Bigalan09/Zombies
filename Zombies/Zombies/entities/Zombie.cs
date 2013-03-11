@@ -23,14 +23,14 @@ namespace Zombies.entities
         public Zombie(Vector2 position)
             : base(position)
         {
-            Health = 10.0f;
-            TexturePath = ("player");
-            Speed = 5.0f;
-            Mass = 2.0f;
+            Health = 20.0f;
+            TexturePath = ("zombie");
+            Speed = 1.0f;
+            Mass = 8.0f;
             ActiveThinkDelay = 20;
             InActiveThinkDelay = 200;
             DrawLayer = Game1.Instance.Random.Next(1000, 1200);
-            Friction = 0.03f;
+            Friction = 0.3f;
             this.CurrentState = new ZombieIdleState();
             this.CurrentStrategy = new ZombieIdleStrategy();
         }
@@ -38,10 +38,10 @@ namespace Zombies.entities
         public Zombie()
             : base()
         {
-            Health = 100.0f;
-            TexturePath = ("player");
-            Speed = 5.0f;
-            Mass = 2.0f;
+            Health = 10.0f;
+            TexturePath = ("zombie");
+            Speed = 1.0f;
+            Mass = 8.0f;
             ActiveThinkDelay = 20;
             InActiveThinkDelay = 200;
             DrawLayer = Game1.Instance.Random.Next(1000, 1200);

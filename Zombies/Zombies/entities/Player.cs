@@ -40,14 +40,14 @@ namespace Zombies.entities
         public Player(Vector2 position)
             : base(position)
         {
-            Health = 10.0f;
+            Health = 50.0f;
             TexturePath = ("player");
-            Speed = 5.0f;
+            Speed = 8.0f;
             Mass = 2.0f;
             this.ActiveThinkDelay = 10;
             this.InActiveThinkDelay = 10;
             this.DrawLayer = 1000;
-            Friction = 0.03f;
+            Friction = 0.3f;
             aim = new Cursor(this);
             this.PrimaryWeapon = new Pistol(this);
         }
@@ -63,12 +63,18 @@ namespace Zombies.entities
         public Player()
             : base()
         {
-            Health = 10.0f;
+            Health = 100.0f;
             TexturePath = ("player");
+            Speed = 8.0f;
+            Mass = 2.0f;
+            this.ActiveThinkDelay = 10;
+            this.InActiveThinkDelay = 10;
+            this.DrawLayer = 1000;
+            Friction = 0.3f;
             aim = new Cursor(this);
             aim.Owner = this;
-            DrawLayer = 1000;
             CreateEntity(aim);
+            this.PrimaryWeapon = new Pistol(this);
         }
 
         public PlayerIndex PlayerIndex
