@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using Zombies.entities.items;
 using Zombies.states;
 using Zombies.states.zombie;
 using Zombies.strategy;
@@ -88,6 +89,16 @@ namespace Zombies.entities
         protected override void Act(GameTime gameTime)
         {
             base.Act(gameTime);
+        }
+
+        public override void OnDeath()
+        {
+            base.OnDeath();
+            if (Game1.Instance.Random.NextDouble() < 0.95)
+            {
+                HealthPack hp = new HealthPack(Position);
+                CreateEntity(hp);
+            }
         }
     }
 }

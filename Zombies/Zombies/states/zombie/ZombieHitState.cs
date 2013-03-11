@@ -28,13 +28,13 @@ namespace Zombies.states.zombie
                 Vector2 temp = new Vector2(Owner.FaceVector.X, Owner.FaceVector.Y);
                 temp.Normalize();
                 ArrayList targetList = new ArrayList();
-                Owner.EntitiesInRadius(64, Owner.CenterPosition + temp * 64, targetList);
+                Owner.EntitiesInRadius(10, Owner.CenterPosition + temp * 10, targetList);
 
                 for (int i = 0; i < targetList.Count; i++)
                 {
                     if (targetList[i] is Player)
                     {
-                        ((Being)targetList[i]).Health -= 3;
+                        ((Being)targetList[i]).Health -= 2;
                     }
                 }
 
