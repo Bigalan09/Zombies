@@ -70,7 +70,7 @@ namespace Zombies
             graphics.PreferredBackBufferWidth = GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Width;
             graphics.PreferredBackBufferHeight = GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Height;
             graphics.PreferMultiSampling = true;
-            graphics.IsFullScreen = true;
+            //graphics.IsFullScreen = true;
             graphics.PreparingDeviceSettings += OnPreparingDeviceSettings;
         }
 

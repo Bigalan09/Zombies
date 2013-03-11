@@ -81,6 +81,7 @@
     <Compile Include="entities\GraphicalEntity.cs" />
     <Compile Include="entities\PhysicalEntity.cs" />
     <Compile Include="entities\Player.cs" />
+    <Compile Include="entities\StaticEntity.cs" />
     <Compile Include="entities\weapons\Explosion.cs" />
     <Compile Include="entities\weapons\Explosive.cs" />
     <Compile Include="entities\weapons\GraphicsLine.cs" />
@@ -89,6 +90,7 @@
     <Compile Include="entities\weapons\Pistol.cs" />
     <Compile Include="entities\weapons\Weapon.cs" />
     <Compile Include="entities\Zombie.cs" />
+    <Compile Include="entities\ZombieSpawner.cs" />
     <Compile Include="gamestates\GameState.cs" />
     <Compile Include="Line.cs" />
     <Compile Include="managers\EntityManager.cs" />
@@ -115,8 +117,15 @@
     <Compile Include="states\player\PlayerWalkFireState.cs" />
     <Compile Include="states\player\PlayerWalkState.cs" />
     <Compile Include="states\StaticEntityState.cs" />
+    <Compile Include="states\zombie\ChaseState.cs" />
+    <Compile Include="states\zombie\ZombieHitState.cs" />
+    <Compile Include="states\zombie\ZombieIdleState.cs" />
+    <Compile Include="states\zombie\ZombieState.cs" />
+    <Compile Include="states\zombie\ZombieWalkState.cs" />
     <Compile Include="strategy\PlayerKeyboardStrategy.cs" />
     <Compile Include="strategy\Strategy.cs" />
+    <Compile Include="strategy\ZombieIdleStrategy.cs" />
+    <Compile Include="strategy\ZombieStrategy.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Game.ico" />
