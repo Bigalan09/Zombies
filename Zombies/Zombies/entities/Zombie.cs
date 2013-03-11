@@ -93,12 +93,13 @@ namespace Zombies.entities
 
         public override void OnDeath()
         {
-            base.OnDeath();
-            if (Game1.Instance.Random.NextDouble() < 0.95)
+            if (Game1.Instance.Random.NextDouble() < 0.5)
             {
                 HealthPack hp = new HealthPack(Position);
                 CreateEntity(hp);
             }
+            Alive = false;
+            base.OnDeath();
         }
     }
 }

@@ -57,11 +57,7 @@ namespace Zombies.entities.weapons
                             if (targetList[i] is Being)
                             {
                                 ((BeingState)((Being)targetList[i]).CurrentState).GetHit(direction, this);
-                                ((Being)targetList[i]).Health -= Damage;
-                                if (((Being)targetList[i]).Health <= 0)
-                                {
-                                    ((Being)targetList[i]).Alive = false;
-                                }
+                                //((Being)targetList[i]).Health -= Damage;
                             }
 
                             ((PhysicalEntityState)((PhysicalEntity)targetList[i]).CurrentState).GetPushed(Vector2.Normalize(direction) * knockEffect);

@@ -17,6 +17,7 @@ namespace Zombies.states.player
 
         public override void Act(GameTime gameTime)
         {
+            Use();
             base.Act(gameTime);
         }
 
@@ -41,12 +42,12 @@ namespace Zombies.states.player
             base.Use();
 
             ArrayList list = new ArrayList();
-            Owner.EntitiesInLine(new Line(Player.Position, Player.Aim.Position), list);
+            Owner.EntitiesInRadius(25, Player.Position, list);
 
             for (int i = 0; i < list.Count; i++)
             {
-                //if (list[i] is Usable)
-                //    ((Usable)list[i]).Use(Player);
+                if (list[i] is Usable)
+                    ((Usable)list[i]).Use(Player);
             }
         }
 

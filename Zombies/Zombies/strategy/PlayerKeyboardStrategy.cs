@@ -58,8 +58,6 @@ namespace Zombies.strategy
                 ((PlayerState)Owner.CurrentState).SecondaryAttack();
             else
                 ((PlayerState)Owner.CurrentState).StopFire();
-            if (Keyboard.GetState().IsKeyUp(Keys.E) && lastKeyboardState.IsKeyDown(Keys.E))
-                ((PlayerState)Owner.CurrentState).Use();
 
             /*
             //TEMPORARY
