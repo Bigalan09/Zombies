@@ -98,7 +98,7 @@ namespace Zombies.entities
                 HealthPack hp = new HealthPack(Position);
                 CreateEntity(hp);
             }
-            Alive = false;
+            //Alive = false;
             base.OnDeath();
         }
     }
