@@ -106,6 +106,7 @@
     <Compile Include="entities\weapons\Weapon.cs" />
     <Compile Include="entities\Zombie.cs" />
     <Compile Include="entities\ZombieSpawner.cs" />
+    <Compile Include="gamestates\StartState.cs" />
     <Compile Include="gamestates\GameOverState.cs" />
     <Compile Include="gamestates\GameState.cs" />
     <Compile Include="Line.cs" />

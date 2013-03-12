@@ -27,11 +27,11 @@ namespace Zombies.entities
         {
             Health = 50.0f;
             TexturePath = ("zombie");
-            if (speed >= 4f) speed = 4f;
+            if (speed >= 6f) speed = 6f;
             Speed = speed;
             Mass = 8.0f;
             ActiveThinkDelay = 20;
-            InActiveThinkDelay = 200;
+            InActiveThinkDelay = 100;
             DrawLayer = Game1.Instance.Random.Next(1000, 1200);
             Friction = 0.3f;
             this.CurrentState = new ZombieIdleState();
@@ -43,11 +43,11 @@ namespace Zombies.entities
         {
             Health = 50.0f;
             TexturePath = ("zombie");
-            if (speed >= 4f) speed = 4f;
+            if (speed >= 6f) speed = 6f;
             Speed = speed;
             Mass = 8.0f;
             ActiveThinkDelay = 20;
-            InActiveThinkDelay = 200;
+            InActiveThinkDelay = 100;
             DrawLayer = Game1.Instance.Random.Next(1000, 1200);
             Friction = 0.3f;
             this.CurrentState = new ZombieIdleState();
@@ -57,7 +57,7 @@ namespace Zombies.entities
         public override GraphicalEntity New()
         {
             Zombie z = new Zombie();
-            if (speed >= 4f) speed = 4f;
+            if (speed >= 6f) speed = 6f;
             z.Speed = speed;
             z.CurrentStrategy = new ZombieStrategy();
             z.CurrentState = new ZombieWalkState();

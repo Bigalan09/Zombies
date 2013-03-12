@@ -100,7 +100,7 @@ namespace Zombies
             font = Content.Load<SpriteFont>("arial");
             font1 = Content.Load<SpriteFont>("arial1");
             GameWorld = new GameWorld();
-            gameStateManager.Push(GameWorld);
+            GameStateManager.Push(new StartState());
         }
 
         protected override void UnloadContent()
@@ -117,11 +117,19 @@ namespace Zombies
             gameStateManager.Think(gameTime);
             inputManager.SetLastState();
         }
+        public void DrawStringCentered(SpriteFont spriteFont, String text, Single y, Color color)
+        {
+            Vector2 textBounds = spriteFont.MeasureString(text);
+            Single centerX = spriteBatch.GraphicsDevice.PresentationParameters.BackBufferWidth * 0.5f - textBounds.X * 0.5f;
+
+            spriteBatch.DrawString(spriteFont, text, new Vector2(centerX, y), color);
+        }
 
         protected override void Draw(GameTime gameTime)
         {
             base.Draw(gameTime);
             gameStateManager.Draw();
+
 
             if (GameState is GameWorld)
             {
@@ -130,11 +138,19 @@ namespace Zombies
                 spriteBatch.DrawString(font, "Score: " + GameWorld.Score, new Vector2(25, 50), Color.White);
                 spriteBatch.End();
             }
+            else if (GameState is GameOverState)
+            {
+                spriteBatch.Begin();
+                DrawStringCentered(font1, "GAME OVER!", (graphics.PreferredBackBufferHeight / 2) - 50, Color.White);
+                DrawStringCentered(font, "Score: " + GameWorld.Score, (graphics.PreferredBackBufferHeight / 2) + 50, Color.White);
+                spriteBatch.End();
+            }
             else
             {
                 spriteBatch.Begin();
-                spriteBatch.DrawString(font1, "GAME OVER!", new Vector2((graphics.PreferredBackBufferWidth / 2) - 150, (graphics.PreferredBackBufferHeight / 2) - 50), Color.White);
-                spriteBatch.DrawString(font, "Score: " + GameWorld.Score, new Vector2((graphics.PreferredBackBufferWidth / 2) - 50, (graphics.PreferredBackBufferHeight / 2) + 50), Color.White);
+                DrawStringCentered(font1, "Zombiezzz!", (graphics.PreferredBackBufferHeight / 2) - 75, Color.White);
+                DrawStringCentered(font, "Controls: W, A, S, D for movement - Left Mouse click for Primary Weapon - Right Mouse click for Secondary Weapon", (graphics.PreferredBackBufferHeight / 2) + 40, Color.White);
+                DrawStringCentered(font, "Press Space to Begin!", (graphics.PreferredBackBufferHeight / 2) + 85, Color.White);
                 spriteBatch.End();
             }
         }

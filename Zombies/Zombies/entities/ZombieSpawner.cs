@@ -35,13 +35,15 @@ namespace Zombies.entities
             int currentCount = count.Count;
             if (currentCount > 5)
             {
-                countSpawn += 1;
                 return;
             }
 
+            if (quantity % 10 == 1)
+                countSpawn++;
+
             Spawn();
             quantity += 1;
-            Zombie.speed += 0.01f;
+            Zombie.speed += 0.03f;
         }
 
         private void Spawn()
