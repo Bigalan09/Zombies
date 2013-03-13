@@ -25,6 +25,7 @@ namespace Zombies.entities
 
             InActiveThinkDelay = 0;
             ActiveThinkDelay = 0;
+            Position = owner.Position;
         }
 
         public Cursor()
@@ -50,11 +51,6 @@ namespace Zombies.entities
         protected override void Act(GameTime gameTime)
         {
             base.Act(gameTime);
-
-            //Vector2 p = Position;
-            //p.X = Mouse.GetState().X + c.Position.X;
-            //p.Y = Mouse.GetState().Y + c.Position.Y;
-            //Position = p;
         }
     }
 }

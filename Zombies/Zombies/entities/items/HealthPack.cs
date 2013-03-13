@@ -38,6 +38,8 @@ namespace Zombies.entities.items
 
         public void Use(Player player)
         {
+            if (player.Health == 100)
+                Game1.Instance.GameWorld.Score += 100;
             player.Health += 10;
             remove();
         }

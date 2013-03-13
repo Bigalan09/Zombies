@@ -48,13 +48,13 @@ namespace Zombies.strategy
         public void callFriends()
         {
             ArrayList l = new ArrayList();
-            Owner.EntitiesInRadius(100.0f, ((Being)Owner).Position, l);
+            Owner.EntitiesInRadius(300.0f, ((Being)Owner).CenterPosition, l);
 
             foreach (Entity e in l)
             {
                 if (e is Zombie)
                 {
-                    //((Zombie)e).Speed = speed;
+                    //((Zombie)e).Speed = 6.0f;
                     ((Zombie)e).CurrentStrategy = new ZombieStrategy();
                 }
             }
@@ -88,7 +88,7 @@ namespace Zombies.strategy
             else
                 staretime++;
 
-            if (staretime >= 60)
+            if (staretime >= 20)
                 callFriends();
 
             walking = !playerSeen;
@@ -100,7 +100,6 @@ namespace Zombies.strategy
                 Owner.FetchAll(typeof(Player), players);
 
             ((ZombieState)Owner.CurrentState).Turn(direction);
-
         }
     }
 }

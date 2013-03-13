@@ -10,12 +10,11 @@ namespace Zombies.entities
     class ZombieSpawner : Entity
     {
         private static int quantity;
-        private static int countSpawn = 1;
         public ZombieSpawner()
         {
             ActiveThinkDelay = Game1.Instance.Random.Next(500, 2000);
             InActiveThinkDelay = Game1.Instance.Random.Next(500, 2000);
-            quantity = 5;
+            quantity = 2;
         }
 
         public override void Initialize()
@@ -30,31 +29,29 @@ namespace Zombies.entities
             ActiveThinkDelay = Game1.Instance.Random.Next(500, 2000);
             InActiveThinkDelay = Game1.Instance.Random.Next(500, 2000);
 
-            ArrayList count = new ArrayList();
-            Game1.Instance.GameWorld.EntityManager.FetchAll(typeof(Zombie), count);
-            int currentCount = count.Count;
-            if (currentCount > 5)
-            {
+            ArrayList zombies = new ArrayList();
+            Game1.Instance.GameWorld.EntityManager.FetchAll(typeof(Zombie), zombies);
+            if (zombies.Count >= 100)
                 return;
-            }
-
-            if (quantity % 10 == 1)
-                countSpawn++;
 
             Spawn();
-            quantity += 1;
-            Zombie.speed += 0.03f;
+            Zombie.speed += 0.01f;
         }
 
         private void Spawn()
         {
-            for (int i = 0; i < countSpawn; i++)
+            for (int i = 0; i < quantity; i++)
             {
+                
                 double angle = Game1.Instance.Random.NextDouble() * Math.PI * 2;
-                double radius = Math.Sqrt(Game1.Instance.Random.NextDouble() + 0.3) * 600;
+                double radius = Math.Sqrt(Game1.Instance.Random.NextDouble() + 0.25) * 600;
                 float x = (float)(Game1.Instance.GameWorld.Player.Position.X - (radius * Math.Cos(angle)));
                 float y = (float)(Game1.Instance.GameWorld.Player.Position.Y - (radius * Math.Sin(angle)));
                 Zombie zombie = new Zombie(new Vector2(x, y));
+                if (Game1.Instance.Random.NextDouble() < 0.011)
+                {
+                    zombie = new BigZombie(new Vector2(x, y));
+                }
                 CreateEntity(zombie);
             }
         }

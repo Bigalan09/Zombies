@@ -55,6 +55,23 @@ namespace Zombies.entities
             {
                 ((BeingState)CurrentState).Dying();
             }
+            if (Position.X > Game1.Bounds.X)
+            {
+                Position = new Vector2(0, Position.Y);
+            }
+            if (Position.X < 0)
+            {
+                Position = new Vector2(Game1.Bounds.X, Position.Y);
+            }
+
+            if (Position.Y > Game1.Bounds.Y)
+            {
+                Position = new Vector2(Position.X, 0);
+            }
+            if (Position.Y < 0)
+            {
+                Position = new Vector2(Position.X, Game1.Bounds.Y);
+            }
         }
     }
 }

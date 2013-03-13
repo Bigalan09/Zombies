@@ -1,4 +1,5 @@
 ﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Input;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -43,6 +44,11 @@ namespace Zombies.gamestates
         public override void Think(GameTime gameTime)
         {
             base.Think(gameTime);
+            if (Game1.Instance.InputManager.KeyDown(Keys.Space))
+            {
+                Game1.Instance.GameWorld = new GameWorld();
+                Game1.Instance.GameStateManager.Push(Game1.Instance.GameWorld);
+            }
         }
 
         public override void Draw()

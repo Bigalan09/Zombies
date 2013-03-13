@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using Zombies.strategy;
 
 namespace Zombies.states.zombie
 {
@@ -10,6 +11,7 @@ namespace Zombies.states.zombie
     {
         public override void EnteringState()
         {
+            Zombie.CurrentStrategy = new ZombieIdleStrategy();
         }
 
         public override void Walk(Vector2 direction)

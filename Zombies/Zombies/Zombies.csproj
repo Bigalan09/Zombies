@@ -89,6 +89,7 @@
     <Compile Include="entities\Background.cs" />
     <Compile Include="entities\BackgroundTile.cs" />
     <Compile Include="entities\Being.cs" />
+    <Compile Include="entities\BigZombie.cs" />
     <Compile Include="entities\Cursor.cs" />
     <Compile Include="entities\Entity.cs" />
     <Compile Include="entities\GraphicalEntity.cs" />

@@ -61,7 +61,9 @@ namespace Zombies.gamestates
             base.Think(gameTime);
 
             //Select area for graphical entities
-            EntityManager.SelectRect = new Rectangle((int)(camera.Position.X - 500 - 1920 / camera.zoom), (int)(camera.Position.Y - 1200 / camera.zoom - 500), (int)(500 + 1920 * 3 / camera.zoom), (int)(500 + 1200 * 3 / camera.zoom));
+            //Game1.CenterOrigin
+            //EntityManager.SelectRect = new Rectangle((int)(camera.Position.X - 500 - 1920 / camera.zoom), (int)(camera.Position.Y - 1200 / camera.zoom - 500), (int)(500 + 1920 * 3 / camera.zoom), (int)(500 + 1200 * 3 / camera.zoom));
+            EntityManager.SelectRect = new Rectangle((int)(camera.Position.X - 50 - Game1.Bounds.X / camera.zoom), (int)(camera.Position.Y - Game1.Bounds.Y / camera.zoom - 50), (int)(50 + Game1.Bounds.X * 3 / camera.zoom), (int)(50 + Game1.Bounds.Y * 3 / camera.zoom));
             EntityManager.Think(gameTime);
 
             EntityManager.CollideAndMove();
@@ -78,12 +80,12 @@ namespace Zombies.gamestates
                 {
                     if (first)
                     {
-                        Camera.Position = (ent.CenterPosition - new Vector2(1920 / 2, 1200 / 2));
+                        Camera.Position = (ent.CenterPosition - Game1.CenterOrigin);
                         first = false;
                     }
                     else
                     {
-                        Camera.Position += (ent.CenterPosition - new Vector2(1920 / 2, 1200 / 2));
+                        Camera.Position += (ent.CenterPosition - Game1.CenterOrigin);
                     }
                 }
             }
@@ -99,7 +101,7 @@ namespace Zombies.gamestates
 
             Background b = new Background();
 
-            player = new Player(new Vector2(920, 600));
+            player = new Player(Game1.CenterOrigin);
             player.CurrentState = new PlayerIdleState();
             player.CurrentStrategy = new PlayerKeyboardStrategy();
             player.PlayerIndex = PlayerIndex.Two;
@@ -119,7 +121,7 @@ namespace Zombies.gamestates
             List<GraphicalEntity> toDraw = new List<GraphicalEntity>();
 
             toDraw.AddRange(EntityManager.Results);
-            EntityManager.QuadTree.Select(new Rectangle((int)camera.Position.X, (int)camera.Position.Y, 1920, 1200), ref toDraw);
+            EntityManager.QuadTree.Select(new Rectangle((int)camera.Position.X, (int)camera.Position.Y, (int)Game1.Bounds.X, (int)Game1.Bounds.Y), ref toDraw);
 
             Game1.Instance.GraphicsDevice.Clear(new Color(60, 70, 40));
 

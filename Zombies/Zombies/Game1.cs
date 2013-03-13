@@ -20,6 +20,20 @@ namespace Zombies
         private SpriteFont font;
         private SpriteFont font1;
         public static Game1 Instance = null;
+        private static Vector2 bounds = Vector2.Zero;
+
+        public static Vector2 Bounds
+        {
+            get { return Game1.bounds; }
+            set { Game1.bounds = value; }
+        }
+        private static Vector2 centerOrigin = Vector2.Zero;
+
+        public static Vector2 CenterOrigin
+        {
+            get { return Game1.centerOrigin; }
+            set { Game1.centerOrigin = value; }
+        }
         
         private ResourceManager resourceManager = null;
         private GameStateManager gameStateManager = null;
@@ -79,6 +93,9 @@ namespace Zombies
             graphics.PreferMultiSampling = true;
             graphics.IsFullScreen = true;
             graphics.PreparingDeviceSettings += OnPreparingDeviceSettings;
+            //new Vector2(1920 / 2, 1200 / 2)
+            Bounds = new Vector2(graphics.PreferredBackBufferWidth, graphics.PreferredBackBufferHeight);
+            CenterOrigin = new Vector2(graphics.PreferredBackBufferWidth / 2, graphics.PreferredBackBufferHeight / 2);
         }
 
         private void OnPreparingDeviceSettings(object sender, PreparingDeviceSettingsEventArgs e)
@@ -143,6 +160,7 @@ namespace Zombies
                 spriteBatch.Begin();
                 DrawStringCentered(font1, "GAME OVER!", (graphics.PreferredBackBufferHeight / 2) - 50, Color.White);
                 DrawStringCentered(font, "Score: " + GameWorld.Score, (graphics.PreferredBackBufferHeight / 2) + 50, Color.White);
+                DrawStringCentered(font, "Press Space to Restart!", (graphics.PreferredBackBufferHeight / 2) + 85, Color.White);
                 spriteBatch.End();
             }
             else

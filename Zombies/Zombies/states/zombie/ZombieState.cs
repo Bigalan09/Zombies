@@ -37,7 +37,7 @@ namespace Zombies.states.zombie
 
         protected override bool LocalCollisionCriterias(PhysicalEntity physicalEntity)
         {
-            if (physicalEntity is Player ||  physicalEntity is StaticEntity)
+            if (physicalEntity is Player || physicalEntity is StaticEntity)
                 return base.LocalCollisionCriterias(physicalEntity);
             return false;
         }

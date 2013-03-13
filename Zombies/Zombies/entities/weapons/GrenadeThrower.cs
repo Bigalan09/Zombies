@@ -11,9 +11,9 @@ namespace Zombies.entities.weapons
 
         public GrenadeThrower()
         {
-            Cooldown = 100;
-            Damage = 90;
-            ReloadTime = 100;
+            Cooldown = 200;
+            Damage = 50;
+            ReloadTime = 200;
             ClipSize = 5;
             AllowFire = true;
         }

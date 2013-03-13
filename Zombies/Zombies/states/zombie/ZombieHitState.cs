@@ -14,7 +14,7 @@ namespace Zombies.states.zombie
 
         public override void EnteringState()
         {
-            hitTime = 20.0f;
+            hitTime = 2.0f;
             Zombie.MovementVector = Vector2.Zero;
         }
 
@@ -34,17 +34,21 @@ namespace Zombies.states.zombie
                 {
                     if (targetList[i] is Player)
                     {
+                        if (Owner is BigZombie)
+                        {
+                            ((Being)targetList[i]).Health -= 8;
+                        }
                         ((Being)targetList[i]).Health -= 2;
+
                     }
                 }
-
-                Zombie.CurrentState = new ZombieWalkState();
+                hitTime = 5;
+                //Zombie.CurrentState = new ZombieWalkState();
             }
         }
 
         public override void Walk(Vector2 direction)
         {
-            //Zombie.CurrentState = new ZombieWalkState();
         }
     }
 }
