@@ -28,19 +28,15 @@ namespace Zombies.entities
         public override GraphicalEntity New()
         {
             BigZombie z = new BigZombie();
-            if (speed >= 4f) speed = 4f;
-            z.Speed = 2.5f;
-            z.CurrentStrategy = new ZombieStrategy();
-            z.CurrentState = new ChaseState();
             return z;
         }
 
         private void Init()
         {
-            Health = 750.0f;
+            Health = 1000.0f;
             TexturePath = ("zombie");
             if (speed >= 3f) speed = 3f;
-            Speed = 2.5f;
+            Speed = 2.0f;
             Mass = 15.0f;
             ActiveThinkDelay = 20;
             InActiveThinkDelay = 100;
@@ -86,9 +82,11 @@ namespace Zombies.entities
         public override void OnDeath()
         {
             base.OnDeath();
-            if (Game1.Instance.Random.NextDouble() < 0.5)
+            if (Game1.Instance.Random.NextDouble() < 0.75)
             {
                 HealthPack hp = new HealthPack(Position);
+                hp.Amount = 50;
+                hp.Scale = 1.35f;
                 CreateEntity(hp);
             }
             int score = (int)((speed * 200) + (-Health * 20)) * 10;

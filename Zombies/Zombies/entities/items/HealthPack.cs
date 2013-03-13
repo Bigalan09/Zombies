@@ -11,6 +11,14 @@ namespace Zombies.entities.items
         private int delay = 200;
         private int count = 1;
 
+        private int amount = 10;
+
+        public int Amount
+        {
+            get { return amount; }
+            set { amount = value; }
+        }
+
         public HealthPack(Vector2 pos)
         {
             Position = pos;
@@ -39,8 +47,9 @@ namespace Zombies.entities.items
         public void Use(Player player)
         {
             if (player.Health == 100)
-                Game1.Instance.GameWorld.Score += 100;
-            player.Health += 10;
+                Game1.Instance.GameWorld.Score += 10 * amount;
+            player.Health += amount;
+            player.Health = (player.Health > 100) ? 100 : player.Health;
             remove();
         }
 
@@ -53,5 +62,6 @@ namespace Zombies.entities.items
         {
             return true;
         }
+
     }
 }
